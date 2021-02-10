@@ -1,6 +1,5 @@
 # Employee-Tracker
 
-[Deployed Application]()
 
 ## Description
 
