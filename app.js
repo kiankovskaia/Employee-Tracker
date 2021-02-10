@@ -5,6 +5,7 @@ const connection = require("./db/connection");
 const figlet = require("figlet");
 const db = require("./db/queries");
 const util = require("util");
+const { eventNames } = require("./db/connection");
 connection.query = util.promisify(connection.query);
 
 //  Figlet welcome message
@@ -49,7 +50,7 @@ function startMenu() {
         new inquirer.Separator(),
         "Update Employee Role",
         // bonus, working on it
-        // "Update Employee Manager",
+        "Update Employee Manager",
         // bonus, working on it
         // new inquirer.Separator(),
         // "Delete Employee",
@@ -183,23 +184,23 @@ async function addEmployee() {
 
   // then create a new array of all the managers to seperate them out for the prompt
 
-  const managerChoices = newEmployeeManagers.map(
-    ({ id, first_name, last_name }) => ({
-      name: `${first_name} ${last_name}`,
-      value: id,
-    })
-  );
+  // const managerChoices = newEmployeeManagers.map(
+  //   ({ id, first_name, last_name }) => ({
+  //     name: `${first_name} ${last_name}`,
+  //     value: id,
+  //   })
+  // );
 
-  await inquirer
-    .prompt({
-      type: "rawlist",
-      name: "newEmployeeManagerQuestion",
-      message: `Choose a manager for the new employee:`,
-      choices: managerChoices,
-    })
-    .then(function (answer2) {
-      newEmployeeManagerAnswer = answer2.newEmployeeManagerQuestion;
-    });
+  // await inquirer
+  //   .prompt({
+  //     type: "rawlist",
+  //     name: "newEmployeeManagerQuestion",
+  //     message: `Choose a manager for the new employee:`,
+  //     choices: managerChoices,   
+  //   })
+  //   .then(function (answer2) {
+  //     newEmployeeManagerAnswer = answer2.newEmployeeManagerQuestion;
+  //   });
 
   // call the db.addEmployee()
 
@@ -404,7 +405,7 @@ async function updateEmployeeRole() {
     .prompt({
       type: "rawlist",
       name: "newEmployeeRole",
-      message: "Which new role would you like to give ?",
+      message: "Which new role would you like to give?",
       choices: roleChoices,
     })
     .then(function (res2) {
